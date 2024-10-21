@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task-1</title>
+    <style>
+      /* General reset and font */
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        font-family: "Arial", sans-serif;
+        background-color: #f0f8ff; /* Light sky blue */
+        color: #333;
+        height: 100%;
+      }
+
+      /* Container */
+      .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: linear-gradient(to bottom, #d4eaf7, #87ceeb);
+      }
+
+      /* River Style */
+      .river {
+        width: 100%;
+        background: linear-gradient(to bottom, #b0e0e6, #87ceeb);
+        border-radius: 50px 50px 0 0;
+        margin-top: 40px;
+        border-top: solid 10px #61d2ff;
+        padding: 20px 0;
+      }
+
+      /* Button Styles */
+      .button-container {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      button {
+        background-color: #5b9bd5; /* Blue shade */
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        font-size: 1em;
+      }
+
+      button:hover {
+        background-color: #4a86c5;
+      }
+
+      /* Headings, Paragraphs, Images, and Links */
+      h1 {
+        color: #2e6da4;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      p {
+        font-size: 1.2em;
+        text-align: center;
+        max-width: 600px;
+        margin: 0 auto 20px;
+      }
+
+      img {
+        display: block;
+        margin: 20px auto;
+        width: 500px;
+        height: auto;
+        border-radius: 10px;
+      }
+
+      a {
+        color: #2e6da4;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s;
+      }
+
+      a:hover {
+        color: #1b4d6b;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 600px) {
+        .button-container {
+          flex-direction: column;
+          gap: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Heading -->
+      <h1>Welcome to My Internship Task</h1>
+
+      <!-- Paragraph -->
+      <p>
+        This webpage was created as part of my
+        <strong>ApexPlanet Web Development Internship</strong>. The purpose of
+        this page is to demonstrate my HTML and CSS skills by crafting a
+        visually soothing interface with interactive elements.
+      </p>
+
+      <!-- Image -->
+      <img
+        src="https://media.licdn.com/dms/image/D4E12AQG0hyhZmq0AyQ/article-cover_image-shrink_600_2000/0/1700488940348?e=2147483647&v=beta&t=eZtDe_xSbm65L-mR1tnM8vnfMpM3aWcSe8rw8o7sjSs"
+        alt="Nature Placeholder Image"
+      />
+
+      <!-- Link -->
+      <p>
+        Want to learn more about my work? Visit my
+        <a href="https://shreyvarshney.pages.dev/">portfolio</a> for more
+        projects!
+      </p>
+
+      <div class="river">
+        <div class="button-container">
+          <button
+            onclick="alert('This is made as a part of ApexPlanet Web Development Internship')"
+          >
+            ApexPlanet Internship
+          </button>
+          <button
+            onclick="alert('This Webpage is Task-1 for the Internship')"
+          >
+            Task-1
+          </button>
+          <button onclick="alert('This Webpage is made by Shrey Varshney')">
+            Made by Shrey Varshney
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
