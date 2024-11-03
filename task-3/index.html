@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Layout</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Main styles */
+      body {
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        background-color: #f4f4f9;
+      }
+      header {
+        background-color: #004d66;
+        padding: 10px 20px;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      header h1 {
+        margin: 0;
+        font-size: 1.5em;
+      }
+      nav {
+        display: flex;
+        gap: 15px;
+      }
+      input {
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+      }
+      nav a {
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+      }
+      .container {
+        display: grid;
+        grid-template-columns: 2fr 4fr;
+        gap: 20px;
+        padding: 20px;
+        flex-grow: 1;
+      }
+      .sidebar,
+      .content {
+        background-color: #eaf7fc;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      .content {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+      }
+      .sidebar h2,
+      .content h2 {
+        color: #004d66;
+        font-size: 1.25em;
+        margin-bottom: 10px;
+      }
+      .sidebar label {
+        display: block;
+        font-size: 0.95em;
+        color: #004d66;
+        margin-top: 10px;
+      }
+      .sidebar input[type="number"],
+      .sidebar select {
+        width: 100%;
+        padding: 8px;
+        border-radius: 5px;
+        border: 1px solid #b3d8e6;
+        font-size: 0.95em;
+        color: #333;
+        margin-top: 5px;
+      }
+      .button {
+        width: 100%;
+        padding: 10px;
+        background-color: #004d66;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+        margin-top: 15px;
+      }
+      .button:hover {
+        background-color: #00384d;
+      }
+      /* Quiz styles */
+      .carousel-container {
+        width: 100%;
+        max-width: 600px;
+        background-color: white;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+        text-align: center;
+      }
+      #question-text {
+        font-size: 1.2rem;
+        color: #004d66;
+        margin-bottom: 20px;
+      }
+      #options-container {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+      }
+      .option {
+        margin: 8px 0;
+        padding: 10px;
+        background-color: #f0faff;
+        border: 1px solid #b3d8e6;
+        border-radius: 5px;
+        cursor: pointer;
+        color: #004d66;
+        font-weight: 500;
+      }
+      .option:hover {
+        background-color: #d0eaf4;
+      }
+      .option.selected {
+        background-color: #d0e6ff;
+        border-color: #007bff;
+      }
+      .option.correct {
+        background-color: #d4edda;
+        border-color: #28a745;
+        color: #155724;
+      }
+      .option.incorrect {
+        background-color: #f8d7da;
+        border-color: #dc3545;
+        color: #721c24;
+      }
+      .option.selected:hover {
+        background-color: #aed0f8;
+      }
+      .option.correct:hover {
+        background-color: #b3eac0;
+      }
+      .option.incorrect:hover {
+        background-color: #f8c6ca;
+      }
+      /* Feedback styling */
+      #feedback {
+        font-weight: 600;
+        margin-top: 15px;
+        font-size: 1rem;
+      }
+      .navigation {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        margin-top: 20px;
+      }
+      .navigation .button {
+        width: 48%;
+        padding: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>ApexPlanet Web Development Internship</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+      </nav>
+    </header>
+
+    <div class="container">
+      <!-- Sidebar with quiz selection tool -->
+      <div class="sidebar">
+        <h2>Quiz Options</h2>
+        <form id="quiz-options-form">
+          <label for="num-questions">Number of Questions:</label>
+          <input
+            type="number"
+            id="num-questions"
+            name="num-questions"
+            min="1"
+            max="50"
+            value="10"
+          />
+
+          <label for="difficulty">Difficulty:</label>
+          <select id="difficulty" name="difficulty">
+            <option value="">Any</option>
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+
+          <label for="category">Category:</label>
+          <select name="category" id="category">
+            <option value="9">General Knowledge</option>
+            <option value="10">Entertainment: Books</option>
+            <option value="11">Entertainment: Film</option>
+            <option value="12">Entertainment: Music</option>
+            <option value="13">Entertainment: Musicals & Theatres</option>
+            <option value="14">Entertainment: Video Games</option>
+            <option value="15">Entertainment: Board Games</option>
+            <option value="17">Science & Nature</option>
+            <option value="18">Science: Computers</option>
+            <option value="19">Science: Mathematics</option>
+            <option value="20">Mythology</option>
+            <option value="21">Sports</option>
+            <option value="22">Geography</option>
+            <option value="23">History</option>
+            <option value="24">Politics</option>
+            <option value="25">Art</option>
+            <option value="26">Celebrities</option>
+            <option value="27">Animals</option>
+            <option value="28">Vehicles</option>
+            <option value="29">Entertainment: Comics</option>
+            <option value="30">Science: Gadgets</option>
+            <option value="31">Entertainment: Japanese Anime & Manga</option>
+            <option value="32">Entertainment: Cartoon & Animations</option>
+          </select>
+          <label for="type">Question Type:</label>
+          <select id="type" name="type">
+            <option value="multiple">Multiple Choice</option>
+            <option value="boolean">True/False</option>
+          </select>
+
+          <button type="button" class="button" onclick="fetchQuiz()">
+            Start Quiz
+          </button>
+        </form>
+      </div>
+
+      <!-- Quiz content area -->
+      <div class="content">
+        <h2>Quiz Questions</h2>
+        <div class="carousel-container">
+          <div id="question-container">
+            <p id="question-text"></p>
+            <div id="options-container"></div>
+            <button id="submit-btn" class="button">Submit</button>
+            <p id="feedback"></p>
+          </div>
+          <div class="navigation">
+            <button id="prev-btn" class="button">&larr; Previous</button>
+            <button id="next-btn" class="button">Next &rarr;</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let questions = [];
+      let currentQuestionIndex = 0;
+      let selectedAnswer = "";
+
+      const questionText = document.getElementById("question-text");
+      const optionsContainer = document.getElementById("options-container");
+      const submitButton = document.getElementById("submit-btn");
+      const feedback = document.getElementById("feedback");
+      const prevButton = document.getElementById("prev-btn");
+      const nextButton = document.getElementById("next-btn");
+
+      // Fetch and display questions based on user selection
+      function fetchQuiz() {
+        const numQuestions =
+          document.getElementById("num-questions").value || 10;
+        const difficulty = document.getElementById("difficulty").value;
+        const category = document.getElementById("category").value;
+        const type = document.getElementById("type").value;
+
+        let apiUrl = `https://opentdb.com/api.php?amount=${numQuestions}&category=${category}`;
+        if (difficulty) apiUrl += `&difficulty=${difficulty}`;
+        if (type) apiUrl += `&type=${type}`;
+
+        fetch(apiUrl)
+          .then((response) => response.json())
+          .then((data) => {
+            questions = data.results;
+            currentQuestionIndex = 0;
+            displayQuestion();
+          });
+      }
+
+      function displayQuestion() {
+        feedback.textContent = "";
+        selectedAnswer = "";
+        const question = questions[currentQuestionIndex];
+        questionText.innerHTML = question.question;
+        optionsContainer.innerHTML = "";
+
+        const options = [
+          ...question.incorrect_answers,
+          question.correct_answer,
+        ].sort(() => Math.random() - 0.5);
+        options.forEach((option) => {
+          const optionElement = document.createElement("div");
+          optionElement.classList.add("option");
+          optionElement.textContent = option;
+          optionElement.onclick = () => {
+            selectedAnswer = option;
+            Array.from(optionsContainer.children).forEach((child) =>
+              child.classList.remove("selected", "incorrect", "correct")
+            );
+            optionElement.classList.add("selected");
+          };
+          optionsContainer.appendChild(optionElement);
+        });
+      }
+
+      submitButton.addEventListener("click", () => {
+        const question = questions[currentQuestionIndex];
+        if (!selectedAnswer) {
+          feedback.textContent = "Please select an answer!";
+          feedback.style.color = "red";
+          return;
+        }
+        feedback.style.color = "black";
+        if (selectedAnswer === question.correct_answer) {
+          feedback.textContent = "Correct!";
+          document.querySelector(".selected").classList.add("correct");
+        } else {
+          feedback.textContent = `Wrong! The correct answer is ${question.correct_answer}.`;
+          document.querySelector(".selected").classList.add("incorrect");
+        }
+      });
+
+      nextButton.addEventListener("click", () => {
+        if (currentQuestionIndex < questions.length - 1) {
+          currentQuestionIndex++;
+          displayQuestion();
+        }
+      });
+
+      prevButton.addEventListener("click", () => {
+        if (currentQuestionIndex > 0) {
+          currentQuestionIndex--;
+          displayQuestion();
+        }
+      });
+    </script>
+  </body>
+</html>
