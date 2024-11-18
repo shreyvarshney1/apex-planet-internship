@@ -198,7 +198,34 @@
     </div>
 
     <script>
-      // To-Do List Functionality
+      // To-Do List Functions
+      function loadTasks() {
+        const storedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+        storedTasks.forEach((taskText) => addTaskToDOM(taskText));
+      }
+
+      function saveTasks() {
+        const tasks = Array.from(document.querySelectorAll("#taskList li")).map(
+          (li) => li.firstChild.textContent
+        );
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+      }
+
+      function addTaskToDOM(taskText) {
+        const li = document.createElement("li");
+        li.textContent = taskText;
+
+        const removeButton = document.createElement("button");
+        removeButton.textContent = "Remove";
+        removeButton.addEventListener("click", function () {
+          li.remove();
+          saveTasks(); // Update localStorage
+        });
+
+        li.appendChild(removeButton);
+        document.getElementById("taskList").appendChild(li);
+      }
+
       document
         .getElementById("addTaskButton")
         .addEventListener("click", function () {
@@ -206,22 +233,45 @@
           const taskText = taskInput.value.trim();
 
           if (taskText) {
-            const li = document.createElement("li");
-            li.textContent = taskText;
-
-            const removeButton = document.createElement("button");
-            removeButton.textContent = "Remove";
-            removeButton.addEventListener("click", function () {
-              li.remove();
-            });
-
-            li.appendChild(removeButton);
-            document.getElementById("taskList").appendChild(li);
+            addTaskToDOM(taskText);
+            saveTasks(); // Save to localStorage
             taskInput.value = "";
           }
         });
 
-      // Image Gallery Functionality
+      // Image Gallery Functions
+      function loadImages() {
+        const storedImages = JSON.parse(localStorage.getItem("images")) || [];
+        storedImages.forEach((imageUrl) => addImageToDOM(imageUrl));
+      }
+
+      function saveImages() {
+        const images = Array.from(
+          document.querySelectorAll("#gallery .gallery-item img")
+        ).map((img) => img.src);
+        localStorage.setItem("images", JSON.stringify(images));
+      }
+
+      function addImageToDOM(imageUrl) {
+        const div = document.createElement("div");
+        div.className = "gallery-item";
+
+        const img = document.createElement("img");
+        img.src = imageUrl;
+
+        const removeButton = document.createElement("button");
+        removeButton.textContent = "Remove";
+        removeButton.className = "remove-button";
+        removeButton.addEventListener("click", function () {
+          div.remove();
+          saveImages(); // Update localStorage
+        });
+
+        div.appendChild(img);
+        div.appendChild(removeButton);
+        document.getElementById("gallery").appendChild(div);
+      }
+
       document
         .getElementById("addImageButton")
         .addEventListener("click", function () {
@@ -229,25 +279,17 @@
           const imageUrl = imageInput.value.trim();
 
           if (imageUrl) {
-            const div = document.createElement("div");
-            div.className = "gallery-item";
-
-            const img = document.createElement("img");
-            img.src = imageUrl;
-
-            const removeButton = document.createElement("button");
-            removeButton.textContent = "Remove";
-            removeButton.className = "remove-button";
-            removeButton.addEventListener("click", function () {
-              div.remove();
-            });
-
-            div.appendChild(img);
-            div.appendChild(removeButton);
-            document.getElementById("gallery").appendChild(div);
+            addImageToDOM(imageUrl);
+            saveImages(); // Save to localStorage
             imageInput.value = "";
           }
         });
+
+      // Load tasks and images on page load
+      document.addEventListener("DOMContentLoaded", function () {
+        loadTasks();
+        loadImages();
+      });
     </script>
   </body>
 </html>
