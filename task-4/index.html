@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Layout</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        background-color: #f4f4f9;
+      }
+
+      header {
+        background-color: #004d66;
+        padding: 10px 20px;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 1.5em;
+      }
+
+      nav {
+        display: flex;
+        gap: 15px;
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.3s;
+      }
+
+      nav a:hover {
+        color: #a5f3ff;
+      }
+
+      h2,
+      h3 {
+        margin: 0;
+      }
+
+      ul {
+        padding: 0;
+        list-style-type: none;
+      }
+
+      li {
+        margin: 0 0 10px 0;
+      }
+      p {
+        font-size: 0.9rem;
+      }
+
+      .container {
+        display: grid;
+        grid-template-columns: 2fr 4fr;
+        gap: 20px;
+        padding: 20px;
+        flex-grow: 1;
+      }
+
+      .sidebar,
+      .content {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .button {
+        display: inline-block;
+        width: auto;
+        padding: 10px 20px;
+        background-color: #004d66;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+        text-decoration: none;
+        text-align: center;
+        font-weight: 600;
+        transition: background-color 0.3s;
+        margin: 10px auto;
+      }
+
+      .button:hover {
+        background-color: #00384d;
+      }
+
+      /* Media query for smaller screens */
+      @media (max-width: 768px) {
+        .container {
+          grid-template-columns: 1fr;
+        }
+      }
+      .highlight {
+        font-size: 2rem;
+        color: #007b99;
+        line-height: 1;
+      }
+
+      .subtitle {
+        text-align: right;
+        font-size: 1.25rem;
+        color: #333;
+        margin: 0.5rem 0 1rem 0;
+      }
+
+      .description {
+        max-width: 100%;
+        font-size: 1rem;
+        line-height: 1.6;
+        color: #555;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .description .bold {
+        font-weight: 600;
+      }
+
+      .description .italic {
+        font-style: italic;
+      }
+
+      .description .underline {
+        text-decoration: underline;
+      }
+
+      .content h2 {
+        font-size: 2rem;
+        margin-bottom: 0;
+        color: #004d66;
+        text-align: center;
+      }
+
+      .content h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0;
+        color: #007b99;
+        line-height: 0.5;
+      }
+
+      .content p {
+        color: #333;
+        line-height: 1.6;
+        margin-bottom: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>ApexPlanet Web Development Internship</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="todolist.html">To-Do List</a>
+        <a href="quiz.html">Quiz</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <div class="container">
+      <div class="sidebar">
+        <span class="highlight">Shrey Varshney</span>
+        <span class="subtitle">A Software Developer</span>
+
+        <p class="description">
+          A passionate <span class="bold">B.Tech</span> student, diving
+          headfirst into the world of code. With
+          <span class="bold">Python, C++, and Web Development skills</span>
+
+          in my toolbox,
+          <span class="italic">
+            I'm on a mission to become a senior developer at a
+          </span>
+          <span class="underline">top-tier product company</span>
+        </p>
+      </div>
+      <div class="content">
+        <h2 class="highlight">Projects</h2>
+        <ul>
+          <li>
+            <h3>To-Do List and Image Gallery</h3>
+            <p>
+              This project is a combined To-Do List and Image Gallery
+              application. It allows users to add, edit, and delete tasks in the
+              To-Do List, and also upload and view images in the gallery. The
+              application uses local storage to persist data, ensuring that
+              tasks and images remain available even after the browser is closed
+              and reopened.
+            </p>
+            <a id="Button" class="button" href="todolist.html"
+              >To-Do List and Image Gallery</a
+            >
+          </li>
+          <li>
+            <h3>Quiz Application</h3>
+            <p>
+              This project is a quiz application that tests users' knowledge on
+              a variety of topics. It features multiple-choice questions with
+              immediate feedback, allowing users to see their score and correct
+              answers after completing the quiz. The application is designed to
+              be engaging and educational, providing an interactive way for
+              users to learn new information.
+            </p>
+            <a id="Button" class="button" href="quiz.html">Quiz</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

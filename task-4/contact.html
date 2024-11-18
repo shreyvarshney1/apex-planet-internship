@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Form</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        background-color: #f4f4f9;
+      }
+
+      header {
+        background-color: #004d66;
+        padding: 10px 20px;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 1.5em;
+      }
+
+      nav {
+        display: flex;
+        gap: 15px;
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.3s;
+      }
+      input,
+      textarea {
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+      }
+      nav a:hover {
+        color: #a5f3ff;
+      }
+      .contact-form {
+        background: #fff;
+        padding: 0px 40px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+        margin: 20px auto;
+      }
+      .contact-form h2 {
+        color: #004d66;
+        text-align: center;
+      }
+      .form-group {
+        margin-bottom: 15px;
+      }
+      .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        color: #333;
+      }
+      .form-group input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+      .form-group input:focus {
+        border-color: #004d66;
+        outline: none;
+      }
+      .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+      .form-group textarea:focus {
+        border-color: #004d66;
+        outline: none;
+      }
+      .submit-btn {
+        width: 100%;
+        padding: 10px;
+        background-color: #004d66;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+        margin-bottom: 15px;
+      }
+      .submit-btn:hover {
+        background-color: #00384d;
+      }
+      .goback-btn {
+        width: 100%;
+        padding: 10px;
+        background-color: #ff2c2c;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+        margin-bottom: 15px;
+      }
+      .goback-btn:hover {
+        background-color: #cf0000;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>ApexPlanet Web Development Internship</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="todolist.html">To-Do List</a>
+        <a href="quiz.html">Quiz</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+    <div class="contact-form">
+      <h2>Contact Me</h2>
+      <form id="contactForm">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="John Doe"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="johndoe@example.com"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="5"
+            placeholder="Your Message"
+            required
+          ></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Submit</button>
+        <button
+          type="reset"
+          class="goback-btn"
+          onclick="location.href='index.html'"
+        >
+          Go Back
+        </button>
+      </form>
+    </div>
+    <script>
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", function (event) {
+          // Prevent the form from submitting
+          event.preventDefault();
+
+          // Get form field values
+          const name = document.getElementById("name").value;
+          const email = document.getElementById("email").value;
+          const message = document.getElementById("message").value;
+
+          // Simple validation checks
+          if (name === "" || email === "" || message === "") {
+            alert("Please fill out all fields.");
+            return;
+          }
+          if (!validateEmail(email)) {
+            alert("Please enter a valid email address.");
+            return;
+          }
+
+          alert("Form submitted successfully!");
+
+          // Clear form after submission
+          document.getElementById("contactForm").reset();
+        });
+
+      // Function to validate email format
+      function validateEmail(email) {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailPattern.test(email);
+      }
+    </script>
+  </body>
+</html>
